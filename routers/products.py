@@ -160,6 +160,11 @@ Session = Depends(get_db)):
     update_data = product.model_dump(exclude_unset=True)
     
     if "price" in update_data:
+        if update_data["price"] is None:
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid price"
+            )
         if update_data["price"] <= 0:
             raise HTTPException(
                 status_code=400,
@@ -167,11 +172,22 @@ Session = Depends(get_db)):
             )
     
     if "stock" in update_data:
+        if update_data["stock"] is None:
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid stock"
+            )
         if update_data["stock"] < 0:
             raise HTTPException(
                 status_code=400,
                 detail="Invalid stock"
             )
+
+    if "name" in update_data and update_data["name"] is None:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid name"
+        )
     
     if "category_id" in update_data and update_data["category_id"] is not None:
         category_id = update_data["category_id"]
@@ -214,6 +230,5 @@ Session = Depends(get_db)):
 
 
     
-
 
 
