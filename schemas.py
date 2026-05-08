@@ -28,6 +28,7 @@ class ProductCreate(BaseModel):
     price: float
     stock: int
     category_id: int | None = None
+    min_stock: int = 5
 
 class Product(BaseModel):
     id: int
@@ -35,7 +36,8 @@ class Product(BaseModel):
     price: float
     stock: int
     category_id: int | None = None
-
+    min_stock: int
+    
     class Config:
         from_attributes = True
 
@@ -44,11 +46,13 @@ class ProductUpdate(BaseModel):
     price: Optional[float] = None
     stock: Optional[int] = None
     category_id: Optional[int] = None
+    min_stock: Optional[int] = None
 
 class ProductSimple(BaseModel):
     id: int
     name: str
     price: float
+
 
     class Config:
         from_attributes = True

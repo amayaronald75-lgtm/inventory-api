@@ -22,6 +22,7 @@ class Product(Base):
     name = Column(String, nullable=False)
     price = Column(Float, nullable=False)
     stock = Column(Integer, nullable=False)
+    min_stock = Column(Integer, nullable=False)
 
     category_id = Column(Integer, ForeignKey("categories.id"), nullable=True)
 

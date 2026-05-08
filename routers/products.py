@@ -55,11 +55,19 @@ def create_product(
             detail="Product already exists in this category"
         )
     
+    if product.min_stock <0:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid min_stock"
+        )
+
+    
     new_product = models.Product(
         name=product.name,
         price=product.price,
         stock=product.stock,
-        category_id=product.category_id
+        category_id=product.category_id,
+        min_stock=product.min_stock
     )
     
     db.add(new_product)
