@@ -205,6 +205,18 @@ Session = Depends(get_db)):
                 status_code=400,
                 detail="Category not found"
             )
+    
+    if "min_stock" in update_data:
+        if update_data["min_stock"] is None:
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid min_stock"
+            )
+        if update_data["min_stock"] < 0:
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid min_stock"
+            )
 
     new_name = update_data.get("name", db_product.name)
     new_category_id = update_data.get("category_id", db_product.category_id)
