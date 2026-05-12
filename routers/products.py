@@ -122,6 +122,16 @@ Depends(get_db)):
     }
 
 
+@router.get("/products/low-stock", response_model=list[schemas.Product])
+def get_low_stock_products(db: Session = Depends(get_db)):
+    db_products = (
+        db.query(models.Product)
+        .filter(models.Product.stock <= models.Product.min_stock)
+        .all()
+    )
+    return db_products
+
+
 @router.get("/products/{product_id}", response_model=schemas.Product)
 def get_product(product_id: int, db:
 Session = Depends(get_db)):
@@ -245,10 +255,10 @@ Session = Depends(get_db)):
     return db_product
 
 
-    
-
-
 
     
 
+
+
+    
 
