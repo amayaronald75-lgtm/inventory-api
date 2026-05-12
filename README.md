@@ -124,6 +124,7 @@ El proyecto utiliza JWT para el manejo de sesiones de usuario.
 - `GET /products/{product_id}` Obtener producto por ID
 - `PATCH /products/{product_id}` Actualizar producto
 - `DELETE /products/{product_id}` Eliminar producto
+- `GET /products/low-stock` Obtener productos con stock bajo
 
 ## 🗂️ Modelos principales
 
@@ -145,6 +146,7 @@ El proyecto utiliza JWT para el manejo de sesiones de usuario.
 - `price`
 - `stock`
 - `category_id`
+- `min_stock`
 
 ## 📌 Estado del proyecto
 
