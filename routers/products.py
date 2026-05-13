@@ -67,7 +67,8 @@ def create_product(
         price=product.price,
         stock=product.stock,
         category_id=product.category_id,
-        min_stock=product.min_stock
+        min_stock=product.min_stock,
+        is_active=product.is_active
     )
     
     db.add(new_product)

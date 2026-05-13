@@ -29,6 +29,7 @@ class ProductCreate(BaseModel):
     stock: int
     category_id: int | None = None
     min_stock: int = 5
+    is_active: bool = True
 
 class Product(BaseModel):
     id: int
@@ -37,6 +38,7 @@ class Product(BaseModel):
     stock: int
     category_id: int | None = None
     min_stock: int
+    is_active: bool 
     
     class Config:
         from_attributes = True
@@ -47,6 +49,7 @@ class ProductUpdate(BaseModel):
     stock: Optional[int] = None
     category_id: Optional[int] = None
     min_stock: Optional[int] = None
+    is_active: Optional[bool] = None
 
 class ProductSimple(BaseModel):
     id: int
