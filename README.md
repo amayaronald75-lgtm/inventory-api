@@ -147,6 +147,7 @@ El proyecto utiliza JWT para el manejo de sesiones de usuario.
 - `stock`
 - `category_id`
 - `min_stock`
+- `is_active`
 
 ## 📌 Estado del proyecto
 
