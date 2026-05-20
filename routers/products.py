@@ -79,7 +79,7 @@ def create_product(
 
 
 @router.get("/products", response_model = schemas.ProductListResponse)
-def get_products(category_id: Optional[int] = None, search: Optional[str] = None, order: Optional[str] = None,
+def get_products(is_active: Optional[bool] = None, category_id: Optional[int] = None, search: Optional[str] = None, order: Optional[str] = None,
 min_price: Optional[float] = None, max_price: Optional[float] = None, skip: int = 0, limit: int = 10, db: Session = 
 Depends(get_db)):
     
@@ -94,7 +94,10 @@ Depends(get_db)):
         raise HTTPException(
             status_code=400,
             detail="order debe ser 'asc' o 'desc'" 
-        ) 
+        )
+
+    if is_active is not None:
+        query = query.filter(models.Product.is_active == is_active)
 
     if search:
         query = query.filter(models.Product.name.ilike(f"%{search}%"))
@@ -262,4 +265,3 @@ Session = Depends(get_db)):
 
 
     
-
