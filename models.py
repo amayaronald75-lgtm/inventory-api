@@ -23,7 +23,7 @@ class Product(Base):
     price = Column(Float, nullable=False)
     stock = Column(Integer, nullable=False)
     min_stock = Column(Integer, nullable=False)
-    is_active = Column(Boolean, default=True) 
+    is_active = Column(Boolean, nullable=False, default=True) 
 
     category_id = Column(Integer, ForeignKey("categories.id"), nullable=True)
 
